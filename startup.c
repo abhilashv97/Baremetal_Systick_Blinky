@@ -13,7 +13,7 @@ void reset_handler(void)
     char *src = &_end_rodata;
     char *ram_data_start = &_ram_data_start;
 
-    while(ram_data_start < &_ram_data_end) //Copying .data section to the RAM from the FLASH
+    while(ram_data_start < &_ram_data_end)      //Copying .data section to the RAM from the FLASH
     {
         *ram_data_start = *src;
         ram_data_start++;
@@ -21,7 +21,7 @@ void reset_handler(void)
     }
 
     char *ram_bss_start = &_ram_bss_start;
-    while(ram_bss_start < &_ram_bss_end) //Initializing .bss with 0x00
+    while(ram_bss_start < &_ram_bss_end)        //Initializing .bss with 0x00
     {
         *ram_bss_start = 0x00;
         ram_bss_start++;

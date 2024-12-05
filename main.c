@@ -20,17 +20,17 @@ void delay(volatile uint32_t count) {
 }
  void systick_handler()
  {
-      *GPIOA_ODR ^= (1 << LED_PIN); // Turn on LED (assuming active high)
+      *GPIOA_ODR ^= (1 << LED_PIN);                             //Toggling the LED
  }
 
 int main(void) {
 	
-    *AHB2ENR = *AHB2ENR | (0x01 << 0); // TO set only the GPIOA enable bit i.e bit 0.
+    *AHB2ENR = *AHB2ENR | (0x01 << 0);                          // To set only the GPIOA enable bit i.e bit 0.
     
-    delay(1000000); // Delay
+    delay(1000000);                                             // Delay
     
-    *GPIOA_MODER = *GPIOA_MODER & (~(0x3 << (LED_PIN * 2))); //Reset the port
-    *GPIOA_MODER = *GPIOA_MODER | (0x01 << (LED_PIN * 2)); // Configuring pin 5 "General purpose output mode" 
+    *GPIOA_MODER = *GPIOA_MODER & (~(0x3 << (LED_PIN * 2)));    //Reset the port
+    *GPIOA_MODER = *GPIOA_MODER | (0x01 << (LED_PIN * 2));      // Configuring pin 5 "General purpose output mode" 
 
     *STK_CTRL |= 0x00; 
     *STK_LOAD |= 0x0FFFFF; 
